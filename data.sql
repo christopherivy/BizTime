@@ -7,11 +7,12 @@ CREATE DATABASE biztime;
 DROP TABLE IF EXISTS invoices;
 DROP TABLE IF EXISTS companies;
 
+
 CREATE TABLE companies
 (
   code text PRIMARY KEY,
   name text NOT NULL UNIQUE,
-  description text
+  description text NOT NULL UNIQUE,
 );
 
 CREATE TABLE invoices
@@ -22,9 +23,9 @@ CREATE TABLE invoices
   paid boolean DEFAULT false NOT NULL,
   add_date date DEFAULT CURRENT_DATE NOT NULL,
   paid_date date,
-  CONSTRAINT invoices_amt_check CHECK ((amt > (0)
+  CONSTRAINT invoicesf_amt_check CHECK ((amt > (0)
   ::double precision))
-);
+)
 
   INSERT INTO companies
   VALUES
